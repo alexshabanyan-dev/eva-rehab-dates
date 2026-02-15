@@ -37,7 +37,8 @@ import { computed, ref } from "vue";
 import { Calendar } from "v-calendar";
 import { MONTHS_TO_SHOW } from "../constants";
 import { getMonthLabel, findCoursesByDate, pageAddress } from "../helpers";
-import { COURSES, CourseStatus, type Course } from "../courses";
+import { COURSES } from "../courses/courses";
+import { CourseStatus, type Course } from "../types";
 import CourseDrawer from "./CourseDrawer.vue";
 
 const selectedCourses = ref<Course[]>([]);

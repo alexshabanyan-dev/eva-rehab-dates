@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Course, CourseSpecialist } from "../courses";
-import { REHAB_CENTER_LABELS, SPECIALIST_LABELS } from "../courses";
+import type { Course, CourseSpecialist } from "../types";
+import { REHAB_CENTER_LABELS, SPECIALIST_LABELS } from "../types";
 import { formatDateRu } from "../helpers";
 
 interface Props {

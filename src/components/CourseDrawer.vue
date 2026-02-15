@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Course } from "../courses";
+import type { Course } from "../types";
 import CourseDrawerItem from "./CourseDrawerItem.vue";
 
 interface Props {
