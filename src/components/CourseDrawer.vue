@@ -2,12 +2,15 @@
   <el-drawer
     :model-value="isOpen"
     @update:model-value="onClose"
-    title="I am the title"
     direction="rtl"
     size="90%"
   >
     <div class="course-list">
-      <CourseDrawerItem v-for="(course, i) in courses" :key="i" :course="course" />
+      <CourseDrawerItem
+        v-for="(course, i) in courses"
+        :key="i"
+        :course="course"
+      />
     </div>
   </el-drawer>
 </template>
