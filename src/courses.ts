@@ -8,6 +8,16 @@ export enum CourseSpecialist {
     GABDRAKHMANOVA = 'GABDRAKHMANOVA',
 }
 
+export const REHAB_CENTER_LABELS: Record<RehabCenter, string> = {
+    [RehabCenter.VMESTE_SILA]: 'Вместе Сила',
+};
+
+export const SPECIALIST_LABELS: Record<CourseSpecialist, string> = {
+    [CourseSpecialist.DRIGA]: 'Максим Дрига',
+    [CourseSpecialist.SHLYAKHOVA]: 'Светлана Шляхова',
+    [CourseSpecialist.GABDRAKHMANOVA]: 'Александра Габдрахманова',
+};
+
 export interface CourseItem {
     specialist: CourseSpecialist,
     time: string,

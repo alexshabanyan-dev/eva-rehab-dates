@@ -75,9 +75,7 @@ function onDateSelect(day: { date: Date }) {
   ) as Array<{ course: Course }>;
 
   const courses = clickedCourses.map((a) => a.course);
-  if (courses.length > 0) {
-    selectedCourses.value = courses;
-    console.log(courses.length === 1 ? courses[0] : courses);
-  }
+  if (!courses?.length) return;
+  selectedCourses.value = courses;
 }
 </script>

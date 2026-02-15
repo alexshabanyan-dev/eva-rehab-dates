@@ -123,6 +123,63 @@ body.dev-viewport-mode {
   color: var(--tg-theme-text-color);
 }
 
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.course-card {
+  background: var(--tg-theme-secondary-bg-color) !important;
+  border-color: var(--tg-theme-border) !important;
+  padding: 20px !important;
+}
+
+.course-card .course-header {
+  margin-bottom: 12px;
+}
+
+.course-card .center-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--tg-theme-text-color);
+}
+
+.course-card .date-range {
+  font-size: 1.1rem;
+  color: var(--tg-theme-hint-color);
+}
+
+.course-card .el-divider {
+  margin: 16px 0;
+  border-color: var(--tg-theme-border);
+}
+
+.course-card .specialists {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.course-card .specialist-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.course-card .specialist-row .el-tag {
+  font-size: 1rem;
+  padding: 8px 14px;
+  --el-tag-bg-color: var(--tg-theme-accent-soft);
+  --el-tag-text-color: var(--tg-theme-link-color);
+  --el-tag-border-color: transparent;
+}
+
+.course-card .specialist-time {
+  font-size: 1.1rem;
+  color: var(--tg-theme-hint-color);
+}
+
 /* === DevSimulator === */
 .dev-simulator {
   position: fixed;

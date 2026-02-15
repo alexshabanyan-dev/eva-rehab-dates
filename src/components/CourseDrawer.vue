@@ -6,13 +6,16 @@
     direction="rtl"
     size="90%"
   >
-    <span>Hi, there!</span>
+    <div class="course-list">
+      <CourseDrawerItem v-for="(course, i) in courses" :key="i" :course="course" />
+    </div>
   </el-drawer>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import type { Course } from "../courses";
+import CourseDrawerItem from "./CourseDrawerItem.vue";
 
 interface Props {
   courses: Course[];
