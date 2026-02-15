@@ -132,7 +132,7 @@ body.dev-viewport-mode {
 .course-card {
   background: var(--tg-theme-secondary-bg-color) !important;
   border-color: var(--tg-theme-border) !important;
-  padding: 20px !important;
+  padding: 20px 2px !important;
 }
 
 .course-card .course-header {
