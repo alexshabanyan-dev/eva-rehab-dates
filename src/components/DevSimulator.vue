@@ -1,14 +1,24 @@
 <template>
   <div v-if="visible" class="dev-simulator">
     <div class="dev-header">
-      <span class="dev-badge">DEV</span>
+      <el-tag size="small" type="info" effect="dark" class="dev-badge">DEV</el-tag>
       <span class="dev-title">Симуляция Telegram</span>
-      <select class="width-select" :value="viewportWidth" @change="onWidthChange">
-        <option v-for="w in viewportPresets" :key="w" :value="w">{{ w }}px</option>
-      </select>
-      <button class="theme-toggle" @click="toggleTheme" :title="`Тема: ${scheme}`">
-        {{ scheme === 'light' ? '🌙' : '☀️' }} {{ scheme === 'light' ? 'Тёмная' : 'Светлая' }}
-      </button>
+      <el-select
+        :model-value="viewportWidth"
+        size="small"
+        class="width-select"
+        @update:model-value="emit('viewportChange', $event)"
+      >
+        <el-option
+          v-for="w in viewportPresets"
+          :key="w"
+          :label="`${w}px`"
+          :value="w"
+        />
+      </el-select>
+      <el-button size="small" @click="toggleTheme" :title="`Тема: ${scheme}`">
+        {{ scheme === 'light' ? '🌙 Тёмная' : '☀️ Светлая' }}
+      </el-button>
     </div>
   </div>
 </template>
@@ -28,11 +38,6 @@ const emit = defineEmits<{
 }>()
 
 const viewportPresets = [360, 375, 390, 414, 428]
-
-function onWidthChange(e: Event) {
-  const w = parseInt((e.target as HTMLSelectElement).value, 10)
-  emit('viewportChange', w)
-}
 
 const scheme = ref<'light' | 'dark'>(props.initialScheme ?? 'light')
 
@@ -84,63 +89,3 @@ watch(
   { immediate: true }
 )
 </script>
-
-<style scoped>
-.dev-simulator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-}
-
-.dev-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #3390ec 0%, #5288c1 100%);
-  color: white;
-  font-size: 0.85rem;
-}
-
-.dev-badge {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: 700;
-}
-
-.dev-title {
-  flex: 1;
-}
-
-.theme-toggle {
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.width-select {
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.width-select option {
-  background: #1a1a2e;
-  color: white;
-}
-</style>
