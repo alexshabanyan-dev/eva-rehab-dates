@@ -4,6 +4,7 @@
     @update:model-value="onClose"
     title="I am the title"
     direction="rtl"
+    size="90%"
   >
     <span>Hi, there!</span>
   </el-drawer>
