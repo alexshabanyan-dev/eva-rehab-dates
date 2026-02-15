@@ -18,7 +18,7 @@
           expanded
           transparent
           borderless
-          :first-day-of-week="1"
+          :first-day-of-week="2"
           :attributes="calendarAttributes"
           disable-page-swipe
           @dayclick="onDateSelect"
@@ -36,23 +36,23 @@
 import { computed, ref } from "vue";
 import { Calendar } from "v-calendar";
 import { MONTHS_TO_SHOW } from "../constants";
-import { getMonthLabel, isDateInRange, pageAddress } from "../helpers";
-import { COURSES, type Course } from "../courses";
+import { getMonthLabel, findCoursesByDate, pageAddress } from "../helpers";
+import { COURSES, CourseStatus, type Course } from "../courses";
 import CourseDrawer from "./CourseDrawer.vue";
 
 const selectedCourses = ref<Course[]>([]);
 
-// Атрибуты: в каждом храним целиком объект курса — по клику достаём его
+// Атрибуты: PAST — красный, FUTURE — синий (дефолт)
 const calendarAttributes = computed(() =>
   COURSES.map((course, i) => ({
     key: `course-${i}`,
-    course,
-    highlight: { fillMode: "light" as const },
+    ...(course.status === CourseStatus.PAST
+      ? { dot: { color: "red" } }
+      : { highlight: { fillMode: "light" as const } }),
     dates: [{ start: course.dateFrom, end: course.dateTo }],
   })),
 );
 
-// Генерируем массив месяцев начиная с текущего
 const months = computed(() => {
   const result: Date[] = [];
   const now = new Date();
@@ -66,16 +66,8 @@ const months = computed(() => {
 });
 
 function onDateSelect(day: { date: Date }) {
-  const date = day.date;
-  const clickedCourses = calendarAttributes.value.filter(
-    (attr) =>
-      "course" in attr &&
-      attr.dates[0] &&
-      isDateInRange(date, attr.dates[0].start, attr.dates[0].end),
-  ) as Array<{ course: Course }>;
-
-  const courses = clickedCourses.map((a) => a.course);
-  if (!courses?.length) return;
+  const courses = findCoursesByDate(day.date, COURSES);
+  if (!courses.length) return;
   selectedCourses.value = courses;
 }
 </script>

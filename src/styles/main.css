@@ -140,13 +140,13 @@ body.dev-viewport-mode {
 }
 
 .course-card .center-name {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--tg-theme-text-color);
 }
 
 .course-card .date-range {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--tg-theme-hint-color);
 }
 
@@ -168,15 +168,15 @@ body.dev-viewport-mode {
 }
 
 .course-card .specialist-row .el-tag {
-  font-size: 1rem;
-  padding: 8px 14px;
+  font-size: 0.95rem;
+  padding: 6px 12px;
   --el-tag-bg-color: var(--tg-theme-accent-soft);
   --el-tag-text-color: var(--tg-theme-link-color);
   --el-tag-border-color: transparent;
 }
 
 .course-card .specialist-time {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--tg-theme-hint-color);
 }
 
@@ -295,6 +295,11 @@ body.dev-viewport-mode {
   background: transparent !important;
 }
 
+/* PAST курсы — красная точка под датой, даты читаемы */
+.month-block .vc-container .vc-red .vc-dot {
+  background-color: #ef4444;
+}
+
 [data-color-scheme="light"] .month-block .vc-container {
   --vc-gray-50: rgba(0, 0, 0, 0.02);
   --vc-gray-100: rgba(0, 0, 0, 0.05);
@@ -313,6 +318,10 @@ body.dev-viewport-mode {
   --vc-accent-400: #3390ec;
   --vc-accent-500: #2d7fd4;
   --vc-accent-600: #256cbb;
+}
+
+[data-color-scheme="light"] .month-block .vc-container .vc-red .vc-dot {
+  background-color: #dc2626;
 }
 
 .month-block .vc-day {
