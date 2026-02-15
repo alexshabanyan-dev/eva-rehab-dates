@@ -6,7 +6,9 @@
         :key="index"
         class="month-block"
       >
-        <el-text tag="b" class="month-title">{{ getMonthLabel(monthDate) }}</el-text>
+        <el-text tag="b" class="month-title">{{
+          getMonthLabel(monthDate)
+        }}</el-text>
         <Calendar
           :initial-page="pageAddress(monthDate)"
           :min-page="pageAddress(monthDate)"
@@ -25,22 +27,20 @@
         </Calendar>
       </div>
     </el-scrollbar>
+
+    <CourseDrawer :courses="selectedCourses" @close="selectedCourses = []" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { Calendar } from "v-calendar";
 import { MONTHS_TO_SHOW } from "../constants";
-import { getMonthLabel } from "../helpers";
+import { getMonthLabel, isDateInRange, pageAddress } from "../helpers";
 import { COURSES, type Course } from "../courses";
+import CourseDrawer from "./CourseDrawer.vue";
 
-function isDateInRange(date: Date, from: Date, to: Date): boolean {
-  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  const f = new Date(from.getFullYear(), from.getMonth(), from.getDate());
-  const t = new Date(to.getFullYear(), to.getMonth(), to.getDate());
-  return d >= f && d <= t;
-}
+const selectedCourses = ref<Course[]>([]);
 
 // Атрибуты: в каждом храним целиком объект курса — по клику достаём его
 const calendarAttributes = computed(() =>
@@ -51,13 +51,6 @@ const calendarAttributes = computed(() =>
     dates: [{ start: course.dateFrom, end: course.dateTo }],
   })),
 );
-
-function pageAddress(date: Date) {
-  return {
-    month: date.getMonth() + 1,
-    year: date.getFullYear(),
-  };
-}
 
 // Генерируем массив месяцев начиная с текущего
 const months = computed(() => {
@@ -83,6 +76,7 @@ function onDateSelect(day: { date: Date }) {
 
   const courses = clickedCourses.map((a) => a.course);
   if (courses.length > 0) {
+    selectedCourses.value = courses;
     console.log(courses.length === 1 ? courses[0] : courses);
   }
 }

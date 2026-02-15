@@ -100,6 +100,29 @@ body.dev-viewport-mode {
   background: var(--tg-theme-bg-color);
 }
 
+/* === el-drawer: Telegram theme === */
+.el-drawer {
+  background: var(--tg-theme-bg-color) !important;
+}
+
+.el-drawer__header {
+  color: var(--tg-theme-text-color);
+  border-bottom-color: var(--tg-theme-border);
+}
+
+.el-drawer__header .el-drawer__title {
+  color: var(--tg-theme-text-color);
+}
+
+.el-drawer__close-btn {
+  color: var(--tg-theme-text-color);
+}
+
+.el-drawer__body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+}
+
 /* === DevSimulator === */
 .dev-simulator {
   position: fixed;
