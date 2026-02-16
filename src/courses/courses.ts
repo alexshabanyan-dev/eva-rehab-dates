@@ -18,9 +18,19 @@ const COURSES_RAW: CourseRaw[] = [
   },
   {
     dateFrom: "16.03.2026",
-    dateTo: "28.03.2026",
+    dateTo: "27.03.2026",
     center: RehabCenter.VMESTE_SILA,
     specialists: [{ specialist: CourseSpecialist.DRIGA, time: "10:00" }],
+    status: CourseStatus.FUTURE,
+  },
+  {
+    dateFrom: "30.03.2026",
+    dateTo: "12.04.2026",
+    center: RehabCenter.DCP_CENTR,
+    specialists: [
+      { specialist: CourseSpecialist.GORYACHEVA, time: "11:00" },
+      { specialist: CourseSpecialist.VAKHTANG, time: "12:00" }
+    ],
     status: CourseStatus.FUTURE,
   },
   {
