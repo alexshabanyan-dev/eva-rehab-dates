@@ -10,13 +10,6 @@ import { PAST_COURSES_RAW } from "./past-courses";
 
 const COURSES_RAW: CourseRaw[] = [
   {
-    dateFrom: "16.02.2026",
-    dateTo: "20.02.2026",
-    center: RehabCenter.VMESTE_SILA,
-    specialists: [{ specialist: CourseSpecialist.SHLYAKHOVA, time: "11:00" }],
-    status: CourseStatus.FUTURE,
-  },
-  {
     dateFrom: "16.03.2026",
     dateTo: "27.03.2026",
     center: RehabCenter.VMESTE_SILA,
