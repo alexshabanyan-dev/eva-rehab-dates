@@ -4,8 +4,16 @@
     :visible="showDevSimulator"
     :initial-scheme="initialDevScheme"
     :viewport-width="devViewportWidth"
-    @theme-change="(s) => { initialDevScheme = s }"
-    @viewport-change="(w) => { devViewportWidth = w }"
+    @theme-change="
+      (s) => {
+        initialDevScheme = s;
+      }
+    "
+    @viewport-change="
+      (w) => {
+        devViewportWidth = w;
+      }
+    "
   />
   <div
     class="app-wrapper"
@@ -18,7 +26,7 @@
       :class="{ 'dev-padding': showDevSimulator }"
     >
       <el-header class="header">
-        <el-text tag="h1" class="title">Eva Rehab</el-text>
+        <el-text tag="h1" class="title">Eva Rehab +</el-text>
         <el-text tag="p" class="subtitle">Расписание курсов</el-text>
       </el-header>
       <el-main class="main">
@@ -54,7 +62,7 @@ watch(
   (dev) => {
     document.body.classList.toggle("dev-viewport-mode", dev);
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 watch(isInTelegram, (inside) => {
