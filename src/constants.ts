@@ -1,5 +1,3 @@
-export const MONTHS_TO_SHOW = 12;
-
 export const monthNames = [
     "Январь",
     "Февраль",

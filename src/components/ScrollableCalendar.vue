@@ -35,7 +35,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { Calendar } from "v-calendar";
-import { MONTHS_TO_SHOW } from "../constants";
 import { getMonthLabel, findCoursesByDate, pageAddress } from "../helpers";
 import { COURSES } from "../courses/courses";
 import { CourseStatus, type Course } from "../types";
@@ -54,16 +53,10 @@ const calendarAttributes = computed(() =>
   })),
 );
 
+// Всегда январь–декабрь календарного года (год берётся от «сегодня»).
 const months = computed(() => {
-  const result: Date[] = [];
-  const now = new Date();
-
-  for (let i = 0; i < MONTHS_TO_SHOW; i++) {
-    const date = new Date(now.getFullYear(), now.getMonth() + i, 1);
-    result.push(date);
-  }
-
-  return result;
+  const year = new Date().getFullYear();
+  return Array.from({ length: 12 }, (_, month) => new Date(year, month, 1));
 });
 
 function onDateSelect(day: { date: Date }) {

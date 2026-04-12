@@ -1,6 +1,7 @@
 export enum RehabCenter {
   VMESTE_SILA = "VMESTE_SILA",
   DCP_CENTR = 'DCP_CENTR',
+  RAZVITIE = 'RAZVITIE',
 }
 
 export enum CourseSpecialist {
@@ -8,12 +9,15 @@ export enum CourseSpecialist {
   SHLYAKHOVA = "SHLYAKHOVA",
   GABDRAKHMANOVA = "GABDRAKHMANOVA",
   VAKHTANG = 'VAKHTANG',
-  GORYACHEVA = 'GORYACHEVA'
+  GORYACHEVA = 'GORYACHEVA',
+  BERNATSKY = 'BERNATSKY',
+  SARVAROVA = 'SARVAROVA',
 }
 
 export const REHAB_CENTER_LABELS: Record<RehabCenter, string> = {
   [RehabCenter.VMESTE_SILA]: "Вместе Сила",
-  [RehabCenter.DCP_CENTR]: 'ДЦП Центр'
+  [RehabCenter.DCP_CENTR]: 'ДЦП Центр',
+  [RehabCenter.RAZVITIE]: 'Развитие'
 };
 
 export const SPECIALIST_LABELS: Record<CourseSpecialist, string> = {
@@ -21,12 +25,15 @@ export const SPECIALIST_LABELS: Record<CourseSpecialist, string> = {
   [CourseSpecialist.SHLYAKHOVA]: "Светлана Шляхова",
   [CourseSpecialist.GABDRAKHMANOVA]: "Александра Габдрахманова",
   [CourseSpecialist.VAKHTANG]: "Вахтанг Прохоров",
-  [CourseSpecialist.GORYACHEVA]: 'Женя Горячева'
+  [CourseSpecialist.GORYACHEVA]: 'Женя Горячева',
+  [CourseSpecialist.BERNATSKY]: 'Бернатский',
+  [CourseSpecialist.SARVAROVA]: 'Елена Саравова',
 };
 
 export interface CourseSpecialistItem {
   specialist: CourseSpecialist;
   time: string;
+  price?: number
 }
 
 export enum CourseStatus {
