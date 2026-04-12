@@ -5,7 +5,9 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import ElementPlus from "unplugin-element-plus/vite";
 
-export default defineConfig({
+// Прод: nginx отдаёт статику с https://…/eva-rehab-dates/ (см. location в sae-polyglot).
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/eva-rehab-dates/" : "/",
   plugins: [
     vue(),
     AutoImport({
@@ -29,4 +31,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 600,
   },
-});
+}));
