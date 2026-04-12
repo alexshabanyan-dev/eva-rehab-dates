@@ -29,23 +29,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { useTelegramTheme } from "./composables/useTelegramTheme";
 import DevSimulator from "./components/DevSimulator.vue";
 import ScrollableCalendar from "./components/ScrollableCalendar.vue";
 
-// Применяем тему Telegram (themeParams) когда доступна
-useTelegramTheme();
-
-// Режим разработки: показываем симулятор когда НЕ в Telegram
-const isInTelegram = computed(() => {
+function detectInTelegram(): boolean {
   const tg = (
     window as Window & { Telegram?: { WebApp?: { initData?: string } } }
   ).Telegram;
   return Boolean(tg?.WebApp?.initData);
-});
+}
+
+// Применяем тему Telegram (themeParams) когда доступна
+const { syncTheme } = useTelegramTheme();
+
+// Скрипт Telegram грузится async — ref + короткий poll, чтобы Mini App не «залипал» в dev-режиме
+const isInTelegram = ref(detectInTelegram());
 
 const showDevSimulator = computed(() => !isInTelegram.value);
+
+watch(
+  () => !isInTelegram.value,
+  (dev) => {
+    document.body.classList.toggle("dev-viewport-mode", dev);
+  },
+  { immediate: true }
+);
+
+watch(isInTelegram, (inside) => {
+  if (inside) syncTheme();
+});
 
 // Тема по умолчанию для dev (из URL ?theme=light или ?theme=dark)
 function getInitialDevTheme(): "light" | "dark" {
@@ -68,8 +82,18 @@ onMounted(() => {
     const num = parseInt(w, 10);
     if (num >= 320 && num <= 600) devViewportWidth.value = num;
   }
-  if (showDevSimulator.value) {
-    document.body.classList.add("dev-viewport-mode");
+
+  if (!isInTelegram.value) {
+    let steps = 0;
+    const id = window.setInterval(() => {
+      steps += 1;
+      if (detectInTelegram()) {
+        isInTelegram.value = true;
+        window.clearInterval(id);
+      } else if (steps >= 100) {
+        window.clearInterval(id);
+      }
+    }, 50);
   }
 });
 </script>

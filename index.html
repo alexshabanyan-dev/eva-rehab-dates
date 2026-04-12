@@ -5,11 +5,13 @@
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#17212b" />
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Eva Rehab — Даты</title>
   </head>
   <body>
     <div id="app"></div>
+    <!-- Сначала Vite: иначе defer у telegram-web-app.js стоит в одной очереди с type=module
+         и браузер не запускает приложение, пока не ответит telegram.org (локально может «висеть»). -->
     <script type="module" src="/src/main.ts"></script>
+    <script async src="https://telegram.org/js/telegram-web-app.js"></script>
   </body>
 </html>

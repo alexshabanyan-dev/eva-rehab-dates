@@ -48,8 +48,18 @@ function applyDefaults(scheme: 'light' | 'dark') {
   applyThemeParams(params)
 }
 
+function safeUseTheme(): ReturnType<typeof useTheme> | null {
+  try {
+    return useTheme()
+  } catch {
+    // В части браузеров (вне Mini App / до готовности WebApp) vue-tg может кинуть —
+    // иначе пустой #app при том, что body уже с фоном из CSS.
+    return null
+  }
+}
+
 export function useTelegramTheme() {
-  const theme = useTheme()
+  const theme = safeUseTheme()
 
   function syncTheme() {
     const tg = (window as Window & { Telegram?: { WebApp?: { themeParams?: ThemeParams; colorScheme?: string; initData?: string } } }).Telegram
@@ -71,8 +81,9 @@ export function useTelegramTheme() {
 
   onMounted(syncTheme)
 
-  if (theme?.colorScheme) {
-    watch(theme.colorScheme, syncTheme, { immediate: true })
+  const colorScheme = theme?.colorScheme
+  if (colorScheme) {
+    watch(colorScheme, syncTheme, { immediate: true })
   }
 
   return { syncTheme }
