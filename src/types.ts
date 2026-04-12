@@ -26,7 +26,7 @@ export const SPECIALIST_LABELS: Record<CourseSpecialist, string> = {
   [CourseSpecialist.GABDRAKHMANOVA]: "Александра Габдрахманова",
   [CourseSpecialist.VAKHTANG]: "Вахтанг Прохоров",
   [CourseSpecialist.GORYACHEVA]: 'Женя Горячева',
-  [CourseSpecialist.BERNATSKY]: 'Бернатский',
+  [CourseSpecialist.BERNATSKY]: 'Антон Бернатский',
   [CourseSpecialist.SARVAROVA]: 'Елена Саравова',
 };
 
